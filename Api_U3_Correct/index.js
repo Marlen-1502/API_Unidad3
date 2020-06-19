@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/temper_naranja', { 'useNewUrlParser'
         console.log('Conexion exitosa a la base de datos');
 });
 
-app.set('port', process.env.PORT || 3005);
+app.set('port', process.env.PORT || 3010);
 app.set('json spaces', 2);
 
 app.use(bodyParser.urlencoded({ extended: true }));
