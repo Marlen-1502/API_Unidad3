@@ -25,28 +25,28 @@ app.listen(app.get('port'), () => {
 });
 
 app.post('/agregarTemperatura', asyncHandler( async (req,res,next) => {
-    console.log('Post /proyecto/agregarTemperatura');
+    console.log('Post /agregarTemperatura');
     console.log(req.body);
-    var temp = new Temperatura();
+    var tem = new Temperatura();
 
-    temp.NoCo = await req.body.NoCo;
-    temp.Temperatura = await req.body.Temperatura;
+    tem.NoCo = await req.body.NoCo;
+    tem.Temp = await req.body.Temp;
 
-    temp.save((err, temp_naranja) => {
+    tem.save((err, temp_naranja) => {
         if (err) 
             res.json({'R':500});
             
-            res.status(200).send({temp: temp_naranja});
+            res.status(200).send({tem: temp_naranja});
     });
 }));
 
 app.post('/obtenerTemperatura', asyncHandler(async (req,res,next) => {
-    var Selector = req.body.Selector;
-    var fi = req.body.fi;
-    var ff = req.body.ff;
+    var Tipo = req.body.Tipo;
+    var FI = req.body.FI;
+    var FF = req.body.FF;
 
-        if(Selector == "Completa") {
-            Temperatura.find({}, "NoCo Temperatura", function(err, temp_naranja) {
+        if(Tipo == "Completa") {
+            Temperatura.find({}, "NoCo Temp", function(err, temp_naranja) {
                 if(err) {
                     res.json({'R':500});
                 }else{
@@ -54,10 +54,10 @@ app.post('/obtenerTemperatura', asyncHandler(async (req,res,next) => {
                 }     
             });
         }
-        else if(Selector == "Rango") {
+        else if(Tipo == "Rango") {
             Temperatura.find({Date:{
-                $gte: new Date(fi),
-                $lt: new Date(ff)
+                $gte: new Date(FI),
+                $lt: new Date(FF)
             }}, function(err, temp_naranja) {
                 if(err) {
                     res.json({'R':500});

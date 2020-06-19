@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const TempSchema = Schema({
     NoCo: String,
-    Temperatura: String,
+    Temp: String,
     Date: {type: Date, default: Date()}
 });
 
